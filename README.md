@@ -19,11 +19,14 @@ This project demonstrates how to use microROS with a Raspberry Pi and Arduino to
 - WSL (Windows Subsystem for Linux) can also be used if you're on a Windows machine. However, note that WSL does not have access to USB drivers by default, so you will need to set up USB access via usbipd (available here: https://github.com/dorssel/usbipd-win).
 
 ### **Folder Structure**
+arduino_lister/
+arduino_talker/
+arduino_uno_serial/
+
 Clone the repository to your `ros2_ws/src` directory (or create the workspace first):
 
-```bash
 mkdir -p ~/ros2_ws/src
-git clone <repository_url> ~/ros2_ws/src
+git clone [<repository_url>](https://github.com/JustASimpleCoder/simple_microROS_arduino) ~/ros2_ws/src
 The folder structure inside the src folder:
 
 Copy code
@@ -33,29 +36,26 @@ arduino_uno_serial/
 After placing the folders in src/, you need to source ROS2 in your terminal:
 
 arduino
-Copy code
+
 . install/setup.bash
 Building the Packages
 Navigate to your ROS2 workspace and build the packages:
 
-bash
-Copy code
+
 cd ~/ros2_ws
 colcon build --packages-select arduino_uno_serial
 colcon build --packages-select arduino_talker
 Running the Nodes
 Open a new terminal and source ROS2:
 
-bash
-Copy code
+
+
 cd ~/ros2_ws
 . install/setup.bash
 Run the arduino_talker node:
 You should see an output like:
 ![image](https://github.com/user-attachments/assets/04c2a8ae-27c8-40f7-b2bd-375a3a8c5411)
 
-bash
-Copy code
 ros2 run arduino_talker arduino_talker_node
 In another terminal, source ROS2 again and run the arduino_uno_serial node:
 
