@@ -1,6 +1,7 @@
 import rclpy
 from rclpy.node import Node
 from std_msgs.msg import Int32
+from std_msgs.msg import String
 import serial
 import time
 
@@ -9,12 +10,12 @@ class SerialNode(Node):
         super().__init__('serial_node')
 
         # Set up the serial connection
-        self.serial_port = serial.Serial('/dev/ttyS3', 9600, timeout=1) # Update the port as needed
+        self.serial_port = serial.Serial('/dev/ttyUSB0', 9600, timeout=1) # Update the port as needed
         time.sleep(2)  # Allow time for Arduino reset
 
         # Subscriber to listen for messages
         self.subscription = self.create_subscription(
-            Int32,
+            String,
             'led_control',
             self.listener_callback,
             10
@@ -26,7 +27,7 @@ class SerialNode(Node):
         self.get_logger().info(f'Sending pin number: {pin} to Arduino')
         try:
             self.serial_port.write(f'{pin}\n'.encode())  # Send pin number to Arduino
-            response = self.serial_port.readline().decode().strip()  # Read Arduino response
+            response = self.serial_port.read()  # Read Arduino response
             self.get_logger().info(f'Arduino responded: {response}')
         except Exception as e:
             self.get_logger().error(f'Error communicating with Arduino: {e}')
@@ -41,6 +42,7 @@ def main(args=None):
     rclpy.init(args=args)
     node = SerialNode()
     try:
+        node.get_logger().info('Starting to spin the node')
         rclpy.spin(node)
     except KeyboardInterrupt:
         pass
