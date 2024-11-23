@@ -61,7 +61,7 @@ void setup() {
   pinMode(LED_BUILTIN, OUTPUT);
 
   // Initialize micro-ROS communication
-  set_microros_transports();
+  set_microros_transports(Serial);
 
   delay(2000); // Wait for micro-ROS agent to be ready
 
