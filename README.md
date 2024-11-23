@@ -19,32 +19,27 @@ This project demonstrates how to use microROS with a Raspberry Pi and Arduino to
 - WSL (Windows Subsystem for Linux) can also be used if you're on a Windows machine. However, note that WSL does not have access to USB drivers by default, so you will need to set up USB access via usbipd (available here: https://github.com/dorssel/usbipd-win).
 
 ### **Folder Structure**
-arduino_lister/
-arduino_talker/
-arduino_uno_serial/
+The folder structure inside the ros2_ws/src folder:
+- arduino_lister/
+- arduino_talker/
+- arduino_uno_serial/
 
-Clone the repository to your `ros2_ws/src` directory (or create the workspace first):
-
-mkdir -p ~/ros2_ws/src
+Clone the repository and move files to `ros2_ws/src` directory (or create the workspace first):
 git clone [<repository_url>](https://github.com/JustASimpleCoder/simple_microROS_arduino) ~/ros2_ws/src
-The folder structure inside the src folder:
+sudo mv ~/simple_microROS_arduino/arduino_talker ~/ros2_ws/src
+sudo mv ~/simple_microROS_arduino/arduino_listener ~/ros2_ws/src
+sudo mv ~/simple_microROS_arduino/arduino_uno_serial ~/ros2_ws/src
 
-Copy code
-arduino_lister/
-arduino_talker/
-arduino_uno_serial/
 After placing the folders in src/, you need to source ROS2 in your terminal:
-
-arduino
-
 . install/setup.bash
-Building the Packages
-Navigate to your ROS2 workspace and build the packages:
 
+### **Building the Packages** 
+Navigate to your ROS2 workspace and build the packages:
 
 cd ~/ros2_ws
 colcon build --packages-select arduino_uno_serial
 colcon build --packages-select arduino_talker
+
 Running the Nodes
 Open a new terminal and source ROS2:
 
