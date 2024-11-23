@@ -9,7 +9,7 @@ class SerialNode(Node):
         super().__init__('serial_node')
 
         # Set up the serial connection
-        self.serial_port = serial.Serial('/dev/ttyUSB0', 9600, timeout=1) # Update the port as needed
+        self.serial_port = serial.Serial('/dev/ttyS3', 9600, timeout=1) # Update the port as needed
         time.sleep(2)  # Allow time for Arduino reset
 
         # Subscriber to listen for messages
