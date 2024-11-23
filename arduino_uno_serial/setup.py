@@ -20,7 +20,7 @@ setup(
     tests_require=['pytest'],
     entry_points={
         'console_scripts': [
-            'arduino_uno_serialized = arduino_uno_serial.publisher_member_function:main''
+            'arduino_uno_serialized = arduino_uno_serial.arduino_uno_serialized:main'
         ],
     },
 )
