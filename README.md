@@ -25,7 +25,7 @@ The folder structure inside the ros2_ws/src folder:
 - arduino_uno_serial/
 
 Clone the repository and move files to `ros2_ws/src` directory (or create the workspace first):
-git clone [<repository_url>](https://github.com/JustASimpleCoder/simple_microROS_arduino) ~/ros2_ws/src
+- git clone [<repository_url>](https://github.com/JustASimpleCoder/simple_microROS_arduino) ~/ros2_ws/src
 - sudo mv ~/simple_microROS_arduino/arduino_talker ~/ros2_ws/src
 - sudo mv ~/simple_microROS_arduino/arduino_listener ~/ros2_ws/src
 - sudo mv ~/simple_microROS_arduino/arduino_uno_serial ~/ros2_ws/src
