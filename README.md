@@ -41,10 +41,10 @@ Navigate to your ROS2 workspace and build the packages:
 - colcon build --packages-select arduino_talker
 
 Running the Nodes
-Open a new terminal and source ROS2:
+Open a new terminal, source ROS2 and run the arduino_talker:
 - cd ~/ros2_ws
 - . install/setup.bash
-Run the arduino_talker node:
+- ros2 run arduino_talker arduino_talker_node
 You should see an output like:
 ![image](https://github.com/user-attachments/assets/04c2a8ae-27c8-40f7-b2bd-375a3a8c5411)
 
@@ -52,7 +52,7 @@ ros2 run arduino_talker arduino_talker_node
 In another terminal, source ROS2 again and run the arduino_uno_serial node:
 - cd ~/ros2_ws
 - source install/setup.bash
-ros2 run arduino_uno_serial arduino_uno_serialized
+- ros2 run arduino_uno_serial arduino_uno_serialized
 
 You should see an output like and the led pins flashing:
 ![image](https://github.com/user-attachments/assets/92dfc785-5f2b-4ef7-85ad-fd987fc56eef)
