@@ -1,27 +1,27 @@
-#**microROS with Raspberry Pi and Arduino**
+# **microROS with Raspberry Pi and Arduino**
 This project demonstrates how to use microROS with a Raspberry Pi and Arduino to control LEDs based on messages from a ROS2 publisher. The project explores serial communication between the Raspberry Pi and an Arduino, using microROS-like concepts without relying on the microROS library due to memory limitations on the Arduino Uno.
 
-**#Project Overview**
-Key Components:
-*Raspberry Pi running ROS2.
-*Arduino Uno connected to the Raspberry Pi via serial communication.
-*A simple Arduino circuit with LEDs that can be controlled using a pin number received via serial.
+## **Project Overview**
+### Key Components:
+- Raspberry Pi running ROS2.
+- Arduino Uno connected to the Raspberry Pi via serial communication.
+- A simple Arduino circuit with LEDs that can be controlled using a pin number received via serial.
 
-**#Node Structure:**
-arduino_uno_serial node - Handles serial communication with the Arduino Uno, sending pin numbers and receiving responses.
-arduino_talker node - Publishes random pin numbers (8-12) corresponding to LED control on the Arduino.
-led_control topic - Used for communication between the arduino_talker node (publisher) and the arduino_uno_serial node (subscriber).
+### **Node Structure:**
+- `arduino_uno_serial` node - Handles serial communication with the Arduino Uno, sending pin numbers and receiving responses.
+- `arduino_talker` node - Publishes random pin numbers (8-12) corresponding to LED control on the Arduino.
+- `led_control` topic - Used for communication between the `arduino_talker` node (publisher) and the `arduino_uno_serial` node (subscriber).
 
-Setup Instructions
-Prerequisites
-A Ubuntu system is recommended for the best compatibility with ROS2.
-Install ROS2. You can follow the installation instructions here: ROS2 Installation.
-WSL (Windows Subsystem for Linux) can also be used if you're on a Windows machine. However, note that WSL does not have access to USB drivers by default, so you will need to set up USB access via usbipd (available here).
-Folder Structure
-Clone the repository to your ros2_ws/src directory (or create the workspace first):
+## **Setup Instructions**
+### Prerequisites
+- A Ubuntu system is recommended for the best compatibility with ROS2.
+- Install ROS2. You can follow the installation instructions here: [ROS2 Installation](https://index.ros.org/doc/ros2/Installation/).
+- WSL (Windows Subsystem for Linux) can also be used if you're on a Windows machine. However, note that WSL does not have access to USB drivers by default, so you will need to set up USB access via usbipd (available here: https://github.com/dorssel/usbipd-win).
 
-bash
-Copy code
+### **Folder Structure**
+Clone the repository to your `ros2_ws/src` directory (or create the workspace first):
+
+```bash
 mkdir -p ~/ros2_ws/src
 git clone <repository_url> ~/ros2_ws/src
 The folder structure inside the src folder:
