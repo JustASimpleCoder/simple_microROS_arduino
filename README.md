@@ -26,38 +26,32 @@ The folder structure inside the ros2_ws/src folder:
 
 Clone the repository and move files to `ros2_ws/src` directory (or create the workspace first):
 git clone [<repository_url>](https://github.com/JustASimpleCoder/simple_microROS_arduino) ~/ros2_ws/src
-sudo mv ~/simple_microROS_arduino/arduino_talker ~/ros2_ws/src
-sudo mv ~/simple_microROS_arduino/arduino_listener ~/ros2_ws/src
-sudo mv ~/simple_microROS_arduino/arduino_uno_serial ~/ros2_ws/src
+- sudo mv ~/simple_microROS_arduino/arduino_talker ~/ros2_ws/src
+- sudo mv ~/simple_microROS_arduino/arduino_listener ~/ros2_ws/src
+- sudo mv ~/simple_microROS_arduino/arduino_uno_serial ~/ros2_ws/src
 
 After placing the folders in src/, you need to source ROS2 in your terminal:
-. install/setup.bash
+- . install/setup.bash
 
 ### **Building the Packages** 
 Navigate to your ROS2 workspace and build the packages:
 
-cd ~/ros2_ws
-colcon build --packages-select arduino_uno_serial
-colcon build --packages-select arduino_talker
+- cd ~/ros2_ws
+- colcon build --packages-select arduino_uno_serial
+- colcon build --packages-select arduino_talker
 
 Running the Nodes
 Open a new terminal and source ROS2:
-
-
-
-cd ~/ros2_ws
-. install/setup.bash
+- cd ~/ros2_ws
+- . install/setup.bash
 Run the arduino_talker node:
 You should see an output like:
 ![image](https://github.com/user-attachments/assets/04c2a8ae-27c8-40f7-b2bd-375a3a8c5411)
 
 ros2 run arduino_talker arduino_talker_node
 In another terminal, source ROS2 again and run the arduino_uno_serial node:
-
-bash
-Copy code
-cd ~/ros2_ws
-. install/setup.bash
+- cd ~/ros2_ws
+- source install/setup.bash
 ros2 run arduino_uno_serial arduino_uno_serialized
 
 You should see an output like and the led pins flashing:
