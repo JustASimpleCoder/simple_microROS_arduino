@@ -19,18 +19,18 @@ class LedColourPublisher : public rclcpp::Node
     {
       publisher_ = this->create_publisher<std_msgs::msg::String>("led_control", 10);
       timer_ = this->create_wall_timer(
-      500ms, std::bind(&LedColourPublisher::timer_callback, this));
+      1000ms, std::bind(&LedColourPublisher::timer_callback, this));
     }
 
   private:
     void timer_callback()
     {
       auto message = std_msgs::msg::String();
-      message.data = "Randomly picking: " + std::to_string(random_pick()) ;
+      message.data = std::to_string(random_pick());
       RCLCPP_INFO(this->get_logger(), "Publishing: '%s'", message.data.c_str());
-      publisher_->publish(message);
+      this->publisher_->publish(message);
 
-      rclcpp::sleep_for(std::chrono::nanoseconds(1000), nullptr);
+      rclcpp::sleep_for(std::chrono::nanoseconds(100000), nullptr);
     }
     rclcpp::TimerBase::SharedPtr timer_;
     rclcpp::Publisher<std_msgs::msg::String>::SharedPtr publisher_;
