@@ -67,49 +67,35 @@ Code Breakdown
 Arduino Code (simplified):
 The Arduino listens for pin numbers sent over serial and blinks the corresponding LED.
 ROS2 Publisher Node (arduino_talker):
-This node generates random pin numbers from 8 to 12 and publishes them to the led_control topic. It uses std_msgs::msg::String for communication.
+- This node generates random pin numbers from 8 to 12 and publishes them to the led_control topic. It uses std_msgs::msg::String for communication.
 ROS2 Subscriber Node (arduino_uno_serial):
-This node listens for messages on the led_control topic and sends the received pin number to the Arduino via serial communication. It expects a response and logs it.
+- This node listens for messages on the led_control topic and sends the received pin number to the Arduino via serial communication. It expects a response and logs it.
 Example Publisher Code:
-cpp
-Copy code
-// Publisher node to send random LED pin numbers
-int random_pick(){
-    int pins[5] = {8,9,10,11,12};
-    rclcpp::Clock clock(RCL_SYSTEM_TIME);
-    auto time_now = clock.now();
-    int index = static_cast<int>(time_now.seconds()) % 5; // pick random pin
-    return pins[index];
-}
+
+    // Publisher node to send random LED pin numbers
+    int random_pick(){
+        int pins[5] = {8,9,10,11,12};
+        rclcpp::Clock clock(RCL_SYSTEM_TIME);
+        auto time_now = clock.now();
+        int index = static_cast<int>(time_now.seconds()) % 5; // pick random pin
+        return pins[index];
+    }
+  
 Example Subscriber Code:
 python
 Copy code
 # Subscriber node to handle serial communication with Arduino
-serial_port.write(f'{pin}\n'.encode())  # Send pin number
-response = self.serial_port.read()  # Read Arduino response
-Troubleshooting
-Arduino Not Responding: Ensure the correct port is specified in the ROS2 code (/dev/ttyUSB0). You can check the connected devices with ls /dev/tty*.
+    serial_port.write(f'{pin}\n'.encode())  # Send pin number
+    response = self.serial_port.read()  # Read Arduino response
+# Troubleshooting
+- Arduino Not Responding: Ensure the correct port is specified in the ROS2 code (/dev/ttyUSB0). You can check the connected devices with ls /dev/tty*.
+- WSL USB Access: If you're using WSL, remember that WSL does not have access to USB devices by default. Use usbipd to share USB devices between Windows and WSL.
 
-WSL USB Access: If you're using WSL, remember that WSL does not have access to USB devices by default. Use usbipd to share USB devices between Windows and WSL.
-
-Contributions
+# Contributions
 Feel free to fork the project and submit pull requests. If you find any bugs or issues, please open an issue in the GitHub repository.
 
-License
+# License
 This project is licensed under the MIT License - see the LICENSE file for details.
 
 This README should provide clear instructions for setting up and running the project, as well as details on the code and how to troubleshoot any issues.
-
-You should see an output like:
-![image](https://github.com/user-attachments/assets/04c2a8ae-27c8-40f7-b2bd-375a3a8c5411)
-
-
-Open another terminal, navigate to ros2_ws and source ros and launch the packages
-cd ~/ros2_ws
-. install/setup.bash
-ros2 run arduino_talker arduino_talker_node
-
-You should see an output like and the led pins flashing:
-![image](https://github.com/user-attachments/assets/92dfc785-5f2b-4ef7-85ad-fd987fc56eef)
-
 
