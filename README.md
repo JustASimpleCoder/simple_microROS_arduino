@@ -3,13 +3,15 @@ This project demonstrates how to use microROS with a Raspberry Pi and Arduino to
 
 Project Overview
 Key Components:
-Raspberry Pi running ROS2.
-Arduino Uno connected to the Raspberry Pi via serial communication.
-A simple Arduino circuit with LEDs that can be controlled using a pin number received via serial.
+*Raspberry Pi running ROS2.
+*Arduino Uno connected to the Raspberry Pi via serial communication.
+*A simple Arduino circuit with LEDs that can be controlled using a pin number received via serial.
+
 Node Structure:
 arduino_uno_serial node - Handles serial communication with the Arduino Uno, sending pin numbers and receiving responses.
 arduino_talker node - Publishes random pin numbers (8-12) corresponding to LED control on the Arduino.
 led_control topic - Used for communication between the arduino_talker node (publisher) and the arduino_uno_serial node (subscriber).
+
 Setup Instructions
 Prerequisites
 A Ubuntu system is recommended for the best compatibility with ROS2.
